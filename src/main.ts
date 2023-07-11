@@ -8,6 +8,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   const config = new DocumentBuilder()
+    .addBearerAuth()
     .setTitle('Mi API documentation')
     .setDescription('The Retail Business Management API')
     .setVersion('1.0')
@@ -15,7 +16,7 @@ async function bootstrap() {
     .addTag('sales')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('/', app, document);
 
   await app.listen(4000);
 }
